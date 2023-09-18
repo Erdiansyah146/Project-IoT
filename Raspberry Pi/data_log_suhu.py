@@ -1,21 +1,16 @@
-"""
- Create date program : Sabtu, 23 September 2023
-"""
+""" Create date program : Sabtu, 23 September 2023 """
 
 import Adafruit_DHT 
 import time
-import datetime
 import telepot
 from time import sleep
-#from datetime import datetime 
+from datetime import datetime 
 from telepot.loop import MessageLoop 
 
-DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 4
+dht_sensor = Adafruit_DHT.DHT11
+dht_pin = 4
 
-now = datetime.datetime.now() 
-
-humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+kelembapan, suhu = Adafruit_DHT.read_retry(dht_sensor, dht_pin)
 
 def handle(msg):
     global command
@@ -29,24 +24,23 @@ def handle(msg):
     if command == '/start':
         bot.sendMessage (chat_id, 'Selamat Datang')
     elif command == '/suhu':
-        bot.sendMessage (chat_id, str(temperature))
+        bot.sendMessage (chat_id, str(suhu))
     elif command == '/kelembapan':
-        bot.sendMessage (chat_id, str(humidity))
+        bot.sendMessage (chat_id, str(kelembapan))
      
 #toke telegram bot    
 bot = telepot.Bot('6634584328:AAGX-T6t8ONmKncAYECUjy1lwkeHqdir0kk')
-
 bot.message_loop(handle)
 
 def main():
-    #print('Temp={0:0.1f}*C Humidity={1:0.1f}%'.format(temperature, humidity))
+    wkatu_sekarang.datetime()
+    #print('Temp={0:0.1f}*C Humidity={1:0.1f}%'.format(suhu, kelembapan))
    
     file = open("/media/pi/1E9F-AC4C/log.csv","a")
-    file.write(datetime.datetime.now().strftime('%Y-%m-%d'+"," '%H:%M:%S')+","+"{0:0.1f}".format(temperature)+","+"{0:0.1f}".format(humidity)+"\n")
-    
-    time.sleep(1)
-    
+    file.write(waktu_sekarang.strftime('%Y-%m-%d'+"," '%H:%M:%S')+","+"{0:0.1f}".format(suhu)+","+"{0:0.1f}".format(kelembapan)+"\n")
     file.close()
+ 
+    time.sleep(1)
     
 while True:
     main() 
