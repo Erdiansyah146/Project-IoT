@@ -33,7 +33,9 @@ def handle(msg):
     elif command == '/kelembapan':
         bot.sendMessage (chat_id, str(humidity))
      
+#toke telegram bot    
 bot = telepot.Bot('6634584328:AAGX-T6t8ONmKncAYECUjy1lwkeHqdir0kk')
+
 bot.message_loop(handle)
 
 def main():
