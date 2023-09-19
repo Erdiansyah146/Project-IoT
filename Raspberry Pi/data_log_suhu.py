@@ -29,7 +29,7 @@ def handle(msg):
         bot.sendMessage (chat_id, str(kelembapan))
      
 #toke telegram bot    
-bot = telepot.Bot('6634584328:AAGX-T6t8ONmKncAYECUjy1lwkeHqdir0kk')
+bot = telepot.Bot('isikan token bot telegram')
 bot.message_loop(handle)
 
 def main():
